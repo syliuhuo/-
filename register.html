@@ -44,15 +44,15 @@
     <form action="/register" method="POST">
         <!--用户名-->
         <div class="form-group">
-            <input type="email" class="form-control" name="petname" placeholder="请填写用户名">
+            <input type="text" class="form-control" name="petname" placeholder="请填写用户名" pattern="^[a-zA-Z]{6,12}$" required>
         </div>
         <!--密码-->
         <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="请填写密码">
+            <input type="password" class="form-control" name="password" placeholder="请填写密码" pattern="^.{6,12}$"  required>
         </div>
         <!--确认密码-->
         <div class="form-group">
-            <input type="password" class="form-control" name="r-password" placeholder="请再次输入密码">
+            <input type="password" class="form-control" name="r-password" placeholder="请再次输入密码" pattern="^.{6,12}$" required>
         </div>
         <!--选择男性女性-->
         <div class="checkbox">
@@ -70,7 +70,7 @@
             <input type="email" class="form-control" name="email" placeholder="请输入电子邮箱地址">
         </div>
         <!--专业-->
-        <select class="form-control" name="work">
+        <select class="form-control" name="work" required>
             <option value="HTML5">HTML5</option>
             <option value="IOS">IOS</option>
             <option value="PHP">PHP</option>
