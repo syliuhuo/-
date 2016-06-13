@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>知识管理系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body style="padding-top:60px;">
+<!--导航的内容-->
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">知识管理系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/www/ask.html">提问</a></li>
+                <!-- <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                         <li><a href="#">Action</a></li>
+                         <li><a href="#">Another action</a></li>
+                         <li><a href="#">Something else here</a></li>
+                         <li role="separator" class="divider"></li>
+                         <li><a href="#">Separated link</a></li>
+                     </ul>
+                 </li>-->
+                <li><a href="/www/signin.html">登录</a></li>
+                <li><a href="/www/register.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--正文内容-->
+<div class="container">
+    <form action="/signin" method="POST">
+        <!--用户名-->
+        <div class="form-group">
+            <input type="text" class="form-control" name="petname" placeholder="请填写用户名" pattern="^[a-zA-Z]{6,12}$" required>
+        </div>
+        <!--密码-->
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="请填写密码" pattern="^.{6,12}$" required>
+        </div>
+        <!--提交按钮-->
+        <button type="submit" style="margin-top:20px;" class="btn btn-default btn-success btn-block">登录</button>
+    </form>
+</div>
+<!--模态框-->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog  modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">用户提示</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
