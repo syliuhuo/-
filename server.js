@@ -36,6 +36,55 @@ app.use(cookieParser());
 app.use(express.static('www'));
 
 
+
+//用户post提交注册页面
+app.post('/register',function(req,res){
+    //首先我们先保存下用户的IP
+    req.body.ip = req.ip;
+    //再保存下日期
+    req.body.time = new Date();
+    //发送函数
+    function send(code,message){
+        res.status(200).json({code,message});
+    }
+    //把数据保存在一个users/用户名命名.txt的文件中
+    function saveFile(){
+        //文件名
+        var filename = `users/${req.body.petname}.txt`;
+        //先查看下文件名是否存在
+        fs.exists(filename,function(exists){
+            if(exists){
+                //如果存在的话，在模态框中提示用户名已经存在了
+                send('error','用户名已经存在');
+            }else{
+                //如果不存在的话，保存一下
+                fs.appendFile(filename,JSON.stringify(req.body),function(err){
+                    if(err){
+                        send('error','系统错误');
+                    }else{
+                        send('success','注册成功');
+                    }
+                })
+
+            }
+        })
+    }
+    //创建我们的users文件夹
+    fs.exists('users',function(exists){
+        if(exists){
+            saveFile();
+        }else{
+            fs.mkdir('users',function(err){
+                if(err){
+                    send('error','系统错误');
+                }else{
+                    saveFile();
+                }
+            })
+        }
+    })
+})
+
 //启动
 app.listen(3000,function(){
     console.log('node is OK');
