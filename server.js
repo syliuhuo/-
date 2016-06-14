@@ -109,7 +109,36 @@ app.post('/register',function(req,res){
         }
     })
 })
-
+//登录的处理
+app.post('/signin',function(req,res){
+    //第一步打开对应的用户的文件夹
+    var filename = `users/${req.body.petname}.txt`;
+    function send(code,message){
+        res.status(200).json({code,message});
+    }
+    //第二步,我先看一下，用户提交的用户名是否注册了
+    fs.exists(filename,function(exists){
+        if(exists){
+            //看看密码
+            fs.readFile(filename,function(err,data){
+                if(err){
+                    send('error','系统错误');
+                }else{
+                    //把它转化为JS对象
+                    var user = JSON.parse(data);
+                    //剩下比较密码了
+                    if(user.password == req.body.password){
+                        send('success','登录成功');
+                    }else{
+                        send('error','密码错误');
+                    }
+                }
+            })
+        }else{
+            send('error','用户名不存在');
+        }
+    })
+})
 //启动
 app.listen(3000,function(){
     console.log('node is OK');
