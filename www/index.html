@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>知识管理系统</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
 </head>
 <body style="padding-top:60px;">
 <!--导航的内容-->
@@ -23,17 +22,19 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="ask.html">提问</a></li>
-                <!-- <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                 <li class="in dropdown" style="display:none;">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        role="button" aria-haspopup="true"
+                        aria-expanded="false">登录用户
+                         <span class="caret"></span>
+                     </a>
                      <ul class="dropdown-menu">
-                         <li><a href="#">Action</a></li>
-                         <li><a href="#">Another action</a></li>
-                         <li><a href="#">Something else here</a></li>
+                         <li><a href="/user.html">个人资料</a></li>
                          <li role="separator" class="divider"></li>
-                         <li><a href="#">Separated link</a></li>
+                         <li><a href="javascript:;">退出</a></li>
                      </ul>
-                 </li>-->
-                <li><a href="signin.html">登录</a></li>
+                 </li>
+                <li class="out"><a href="signin.html">登录</a></li>
                 <li><a href="register.html">注册</a></li>
             </ul>
         </div>
@@ -58,3 +59,7 @@
 </div>
 </body>
 </html>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="scripts/public.js"></script>

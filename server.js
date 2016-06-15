@@ -128,6 +128,9 @@ app.post('/signin',function(req,res){
                     var user = JSON.parse(data);
                     //剩下比较密码了
                     if(user.password == req.body.password){
+                        //在服务器端创建一个cookie，保存起来，里面
+                        //存储的是用户名信息
+                        res.cookie('petname',req.body.petname);
                         send('success','登录成功');
                     }else{
                         send('error','密码错误');
@@ -138,6 +141,15 @@ app.post('/signin',function(req,res){
             send('error','用户名不存在');
         }
     })
+})
+
+//退出
+
+app.get('/signout',function(req,res){
+    //清除一下cookie当中petname的信息
+    res.clearCookie('petname');
+    //返回一个成功的信息.
+    res.status(200).json({code:'success'});
 })
 //启动
 app.listen(3000,function(){
