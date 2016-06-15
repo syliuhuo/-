@@ -143,8 +143,12 @@ app.post('/signin',function(req,res){
     })
 })
 
-//退出
+//图片
+app.post('/user',uploads.single('photo'),function(req,res){
+    res.status(200).json({code:'success',message:'发送成功'});
+})
 
+//退出
 app.get('/signout',function(req,res){
     //清除一下cookie当中petname的信息
     res.clearCookie('petname');
