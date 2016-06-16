@@ -142,6 +142,47 @@ app.post('/signin',function(req,res){
         }
     })
 })
+//提问的处理
+app.post('/ask',function(req,res){
+    var petname = req.cookies.petname;
+    req.body.ip = req.ip;
+    var time = new Date();
+    req.body.time = time;
+    //记录一下当前提问的用户
+    req.body.petname = petname;
+    function send(code,message){
+        res.status(200).json({code,message});
+    }
+    function saveFile(){
+        var filename = `questions/${time.getTime()}.txt`;
+        fs.exists(filename,function(exists){
+            if(exists){
+                send('error','系统错误');
+            }else{
+                fs.appendFile(filename,JSON.stringify(req.body),function(err){
+                    if(err){
+                        send('error','系统错误');
+                    }else{
+                        send('success','提问成功');
+                    }
+                })
+            }
+        })
+    }
+    fs.exists('questions',function(exists){
+        if(exists){
+            saveFile();
+        }else{
+            fs.mkdir('questions',function(err){
+                if(err){
+                    send('error','系统错误')
+                }else{
+                    saveFile();
+                }
+            })
+        }
+    })
+})
 
 //图片
 app.post('/user',uploads.single('photo'),function(req,res){
