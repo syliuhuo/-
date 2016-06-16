@@ -184,6 +184,69 @@ app.post('/ask',function(req,res){
     })
 })
 
+//首页展示
+//首页展示
+app.get('/questions',function(req,res){
+    function send(code,message,data){
+        res.status(200).json({code,message,data});
+    }
+    //读取questions里面所有的文件,将文件的信息发送给前端
+    function readFiles(i,files,questions,callback){
+        if(i < files.length){
+            fs.readFile(`questions/${files[i]}`,function(err,data){
+                questions.push(JSON.parse(data));
+                readFiles(++i,files,questions,callback);
+            })
+        }else{
+            callback();
+        }
+    }
+    //开始读取文件
+    fs.readdir('questions',function(err,file){
+        if(err){
+            send('error','文件读取失败');
+        }else{
+            file = file.reverse();
+            var questions = [];
+            readFiles(0,file,questions,function(){
+                send('success','读取成功',questions);
+            })
+        }
+    })
+})
+//回答
+
+app.post('/answer',function(req,res){
+    function send(code,message){
+        res.status(200).json({code,message});
+    }
+    var filename = `questions/${req.cookies.question}.txt`;
+    //当前登录的用户名
+    var petname = req.cookies.petname;
+    req.body.petname = petname;
+    req.body.ip = req.ip;
+    req.body.time = new Date();
+    //读取文件写入文件
+    fs.readFile(filename,function(err,data){
+        if(err){
+            send('error','读取失败');
+        }else{
+            var question = JSON.parse(data);
+            //如果它没有数据，则创建一个空的数据
+            if(!question.answers) question.answers = [];
+            question.answers.push(req.body);
+
+            fs.writeFile(filename,JSON.stringify(question),function(err){
+                if(err){
+                    send('error','读取失败');
+                }else{
+                    send('success','读取成功');
+                }
+            })
+        }
+    })
+
+})
 //图片
 app.post('/user',uploads.single('photo'),function(req,res){
     res.status(200).json({code:'success',message:'发送成功'});
