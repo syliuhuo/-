@@ -86,7 +86,7 @@
 <!--正文内容-->
 <div class="container questions">
     {{each questions as q}}
-    <div class="media" question="{{q.time |ms}}" style="border:3px solid white;">
+    <div class="media" onclick="location.href='/answer/{{q.time |ms}}'" style="border:3px solid white;">
         <div class="media-left">
             <a>
                 <img class="media-object" src="uploads/{{q.petname}}.jpg">
