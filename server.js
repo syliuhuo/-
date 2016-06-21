@@ -14,8 +14,34 @@ var fs = require('fs');
 //加载文件的上传下载支持
 var multer = require('multer');
 
+//加载模板
+var template = require('art-template');
+
+
 //创建一个应用
 var app = express();
+
+//把模板的配置写一下
+app.engine('.html',template.__express);
+app.set('view engine','html');
+
+//模板过滤器放在这里
+template.helper('ms',function(time){
+    var time = new Date(time);
+    return time.getTime();
+});
+template.helper('formatTime',function(){
+    var time = new Date(time);
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var day = time.getDate();
+    var month = month < 10 ? '0' + month : month;
+    var day = day < 10 ? '0' + day : day;
+    return `${year}-${month}-${day}`;
+});
+
+
+
 
 //使用某些插件
 //文件下载的配置
