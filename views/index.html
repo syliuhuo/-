@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>知识管理系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .media-body {
+            padding:5px;
+        }
+        .media-object {
+            width:45px;
+            height:45px;
+            border-radius: 50%;
+        }
+        .media-r {
+            padding-left:55px;
+            background: white;
+        }
+        .media-r h4 {
+            text-align: right;
+        }
+
+        .media-body .media-footer,.media-footing {
+            text-align:right;
+            font-size:12px;
+        }
+        .media-footer {
+            padding-right:55px;
+        }
+        .media-footing {
+            padding-left:55px;
+        }
+        .media {
+            cursor:pointer;
+            background-color:lightgreen;
+            padding:10px;
+            border:1px solid #ccc;
+        }
+        body {
+            height:100%;
+            background:lightgoldenrodyellow;
+        }
+        .container {
+            border:1px solid #ccc;
+            margin-top: 50px;
+            padding:20px;
+            background:lightblue;
+        }
+    </style>
+</head>
+<body style="padding-top:60px;">
+<!--导航的内容-->
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">知识管理系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="ask.html">提问</a></li>
+                 <li class="in dropdown" style="display:none;">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        role="button" aria-haspopup="true"
+                        aria-expanded="false">登录用户
+                         <span class="caret"></span>
+                     </a>
+                     <ul class="dropdown-menu">
+                         <li><a href="/user.html">个人资料</a></li>
+                         <li role="separator" class="divider"></li>
+                         <li><a href="javascript:;">退出</a></li>
+                     </ul>
+                 </li>
+                <li class="out"><a href="signin.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--正文内容-->
+<div class="container questions">
+    {{each questions as q}}
+    <div class="media" question="{{q.time |ms}}" style="border:3px solid white;">
+        <div class="media-left">
+            <a>
+                <img class="media-object" src="uploads/{{q.petname}}.jpg">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">{{q.petname}}</h4>
+            {{q.content}}
+            <div class="media-footer">
+                {{q.time |formatTime}}
+            </div>
+        </div>
+    </div>
+    {{each q.answers as a}}
+    <div class="media">
+        <div class="media-body media-r">
+            <h4 class="media-heading">{{a.petname}}</h4>
+            {{a.content}}
+            <div class="media-footing">
+                {{a.time |formatTime}}
+            </div>
+        </div>
+        <div class="media-right">
+            <a>
+                <img class="media-object" src="uploads/{{a.petname}}.jpg">
+            </a>
+        </div>
+    </div>
+    {{/each}}
+    {{/each}}
+</div>
+<!--模态框-->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog  modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">用户提示</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+

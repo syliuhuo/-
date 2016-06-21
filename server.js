@@ -30,15 +30,20 @@ template.helper('ms',function(time){
     var time = new Date(time);
     return time.getTime();
 });
-template.helper('formatTime',function(){
+template.helper('formatTime',function(time){
     var time = new Date(time);
-    var year = time.getFullYear();
-    var month = time.getMonth() + 1;
-    var day = time.getDate();
-    var month = month < 10 ? '0' + month : month;
-    var day = day < 10 ? '0' + day : day;
-    return `${year}-${month}-${day}`;
+    return formatDate(time);
 });
+function formatDate(t){
+    var year = t.getFullYear();
+    var month = t.getMonth() + 1;
+    var day = t.getDate();
+    var hour = t.getHours();
+    var second = t.getMinutes();
+    hour = hour < 10 ? '0' + hour : hour ;
+    second = second < 10 ? '0' + second : second;
+    return `${year}-${month}-${day} ${hour}:${second}`;
+}
 
 
 
@@ -212,7 +217,7 @@ app.post('/ask',function(req,res){
 
 //首页展示
 //首页展示
-app.get('/questions',function(req,res){
+app.get('/',function(req,res){
     function send(code,message,data){
         res.status(200).json({code,message,data});
     }
@@ -235,7 +240,11 @@ app.get('/questions',function(req,res){
             file = file.reverse();
             var questions = [];
             readFiles(0,file,questions,function(){
-                send('success','读取成功',questions);
+                //send('success','读取成功',questions);
+                res.render('index',{
+                    user:req.cookies.petname,
+                    questions
+                })
             })
         }
     })

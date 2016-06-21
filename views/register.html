@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>知识管理系统</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
 </head>
 <body style="padding-top:60px;">
 <!--导航的内容-->
@@ -42,11 +41,43 @@
 </nav>
 <!--正文内容-->
 <div class="container">
-    <form action="/answer" method="POST">
+    <form method="POST" action="">
+        <!--用户名-->
         <div class="form-group">
-            <textarea name="content" placeholder="请详细写回答内容" class="form-control" rows="10" required></textarea>
-            <input type="submit" style="margin-top:20px;" class="btn btn-default btn-success btn-block" value="提交回答">
+            <input type="text" class="form-control" name="petname" placeholder="请填写用户名" pattern="^[a-zA-Z]{6,12}$" required>
         </div>
+        <!--密码-->
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="请填写密码" pattern="^.{6,12}$"  required>
+        </div>
+        <!--确认密码-->
+        <div class="form-group">
+            <input type="password" class="form-control" name="rpassword" placeholder="请再次输入密码" pattern="^.{6,12}$" required>
+        </div>
+        <!--选择男性女性-->
+        <div class="checkbox">
+                <label>
+                    <input type="radio" name="sex" value="men" checked> 先生
+                </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="radio" name="sex" value="women"> 女士
+            </label>
+        </div>
+        <!--电子邮箱-->
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="请输入电子邮箱地址">
+        </div>
+        <!--专业-->
+        <select class="form-control" name="work" required>
+            <option value="HTML5">HTML5</option>
+            <option value="IOS">IOS</option>
+            <option value="PHP">PHP</option>
+            <option value="UI">UI</option>
+        </select>
+        <!--提交按钮-->
+        <input type="submit" value="注册" style="margin-top:20px;" class="btn btn-default btn-success btn-block">
     </form>
 </div>
 <!--模态框-->
@@ -68,6 +99,5 @@
 </html>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="scripts/register.js"></script>
 <script src="js/jquery.cookie.js"></script>
-<script src="scripts/public.js"></script>
-<script src="scripts/answer.js"></script>

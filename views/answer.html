@@ -4,50 +4,7 @@
     <meta charset="UTF-8">
     <title>知识管理系统</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-        .media-body {
-            padding:5px;
-        }
-        .media-object {
-            width:45px;
-            height:45px;
-            border-radius: 50%;
-        }
-        .media-r {
-            padding-left:55px;
-            background: white;
-        }
-        .media-r h4 {
-            text-align: right;
-        }
 
-        .media-body .media-footer,.media-footing {
-            text-align:right;
-            font-size:12px;
-        }
-        .media-footer {
-            padding-right:55px;
-        }
-        .media-footing {
-            padding-left:55px;
-        }
-        .media {
-            cursor:pointer;
-            background-color:lightgreen;
-            padding:10px;
-            border:1px solid #ccc;
-        }
-        body {
-            height:100%;
-            background:lightgoldenrodyellow;
-        }
-        .container {
-            border:1px solid #ccc;
-            margin-top: 50px;
-            padding:20px;
-            background:lightblue;
-        }
-    </style>
 </head>
 <body style="padding-top:60px;">
 <!--导航的内容-->
@@ -65,18 +22,18 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="ask.html">提问</a></li>
-                 <li class="in dropdown" style="display:none;">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                        role="button" aria-haspopup="true"
-                        aria-expanded="false">登录用户
-                         <span class="caret"></span>
-                     </a>
-                     <ul class="dropdown-menu">
-                         <li><a href="/user.html">个人资料</a></li>
-                         <li role="separator" class="divider"></li>
-                         <li><a href="javascript:;">退出</a></li>
-                     </ul>
-                 </li>
+                <li class="in dropdown" style="display:none;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true"
+                       aria-expanded="false">登录用户
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/user.html">个人资料</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="javascript:;">退出</a></li>
+                    </ul>
+                </li>
                 <li class="out"><a href="signin.html">登录</a></li>
                 <li><a href="register.html">注册</a></li>
             </ul>
@@ -84,7 +41,14 @@
     </div>
 </nav>
 <!--正文内容-->
-<div class="container questions"></div>
+<div class="container">
+    <form action="/answer" method="POST">
+        <div class="form-group">
+            <textarea name="content" placeholder="请详细写回答内容" class="form-control" rows="10" required></textarea>
+            <input type="submit" style="margin-top:20px;" class="btn btn-default btn-success btn-block" value="提交回答">
+        </div>
+    </form>
+</div>
 <!--模态框-->
 <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog  modal-sm" role="document">
@@ -105,6 +69,4 @@
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
-<script src="scripts/public.js"></script>
-<script src="scripts/index.js"></script>
-
+<script src="scripts/answer.js"></script>
