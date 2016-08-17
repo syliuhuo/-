@@ -2,9 +2,6 @@
  * Created by Administrator on 2016/6/16.
  */
 
-if(!$.cookie('petname')){
-    location.href = 'signin.html';
-}
 $('form').submit(function(e){
     e.preventDefault();
     var data = $(this).serialize();

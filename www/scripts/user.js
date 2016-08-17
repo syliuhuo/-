@@ -2,9 +2,7 @@
  * Created by hama on 2016/6/15.
  */
 //还是如果不登录，不让它访问，提示它登录
-if(!$.cookie('petname')){
-    location.href = '/signin.html';
-}
+
 $('form').submit(function(e){
     e.preventDefault();
     //通过formData来进行传递
@@ -31,4 +29,4 @@ $('form').submit(function(e){
             }
         }
     })
-})
+});

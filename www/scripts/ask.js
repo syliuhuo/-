@@ -3,9 +3,7 @@
  */
 /* 提问*/
 
-if(!$.cookie('petname')){
-    location.href = 'signin.html';
-}
+
 //提问的事件
 $('form').submit(function(e){
     e.preventDefault();

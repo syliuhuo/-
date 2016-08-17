@@ -35,7 +35,7 @@ $('form').submit(function(e){
             $('.modal').modal('show').on('hidden.bs.modal',function(){
                 if(data.code == 'success'){
                     //当用户注册成功之后，跳转到signin.html页面当中去.
-                    location.href = 'signin.html';
+                    location.href = '/signin';
                 }
             })
         })
@@ -44,5 +44,4 @@ $('form').submit(function(e){
         $('.modal-body').text('密码不一样');
         $('.modal').modal('show');
     }
-
 })

@@ -4,9 +4,6 @@
 //登录的提交
 
 //已经登录了，就不能在访问登录页面了吧
-if($.cookie('petname')){
-    location.href = '/';
-}
 
 $('form').submit(function(e){
     //第一步，还是阻止一下默认行为
